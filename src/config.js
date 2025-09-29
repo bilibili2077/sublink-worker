@@ -10,123 +10,21 @@ export const SURGE_IP_RULE_SET_BASEURL = 'https://gh-proxy.com/https://github.co
 export const CUSTOM_RULES = [];
 // Unified rule structure
 export const UNIFIED_RULES = [
-	{
-		name: 'Ad Block',
-		outbound: t('outboundNames.Ad Block'),
-		site_rules: ['category-ads-all'],
-		ip_rules: []
-	},
-	{
-		name: 'AI Services',
-		outbound: t('outboundNames.AI Services'),
-		site_rules: ['category-ai-!cn',],
-		ip_rules: []
-	},
-	{
-		name: 'Bilibili',
-		outbound: t('outboundNames.Bilibili'),
-		site_rules: ['bilibili'],
-		ip_rules: []
-	},
-	{
-		name: 'Youtube',
-		outbound: t('outboundNames.Youtube'),
-		site_rules: ['youtube'],
-		ip_rules: []
-	},
-	{
-		name: 'Google',
-		outbound: t('outboundNames.Google'),
-		site_rules: ['google'],
-		ip_rules: ['google']
-	},
-	{
-		name: 'Private',
-		outbound: t('outboundNames.Private'),
-		site_rules: [],
-		ip_rules: ['private']
-	},
-	{
-		name: 'Location:CN',
-		outbound: t('outboundNames.Location:CN'),
-		site_rules: ['geolocation-cn','cn'],
-		ip_rules: ['cn']
-	},
-	{
-		name: 'Telegram',
-		outbound: t('outboundNames.Telegram'),
-		site_rules: [],
-		ip_rules: ['telegram']
-	},
-	{
-		name: 'Github',
-		outbound: t('outboundNames.Github'),
-		site_rules: ['github', 'gitlab'],
-		ip_rules: []
-	},
-	{
-		name: 'Microsoft',
-		outbound: t('outboundNames.Microsoft'),
-		site_rules: ['microsoft'],
-		ip_rules: []
-	},
-	{
-		name: 'Apple',
-		outbound: t('outboundNames.Apple'),
-		site_rules: ['apple'],
-		ip_rules: []
-	},
-	{
-		name: 'Social Media',
-		outbound: t('outboundNames.Social Media'),
-		site_rules: ['facebook', 'instagram', 'twitter', 'tiktok', 'linkedin'],
-		ip_rules: []
-	},
-	{
-		name: 'Streaming',
-		outbound: t('outboundNames.Streaming'),
-		site_rules: ['netflix', 'hulu', 'disney', 'hbo', 'amazon','bahamut'],
-		ip_rules: []
-	},
-	{
-		name: 'Gaming',
-		outbound: t('outboundNames.Gaming'),
-		site_rules: ['steam', 'epicgames', 'ea', 'ubisoft', 'blizzard'],
-		ip_rules: []
-	},
-	{
-		name: 'Education',
-		outbound: t('outboundNames.Education'),
-		site_rules: ['coursera', 'edx', 'udemy', 'khanacademy', 'category-scholar-!cn'],
-		ip_rules: []
-	},
-	{
-		name: 'Financial',
-		outbound: t('outboundNames.Financial'),
-		site_rules: ['paypal', 'visa', 'mastercard','stripe','wise'],
-		ip_rules: []
-	},
-	{
-		name: 'Cloud Services',
-		outbound: t('outboundNames.Cloud Services'),
-		site_rules: ['aws', 'azure', 'digitalocean', 'heroku', 'dropbox'],
-		ip_rules: []
-	},
-	{
-		name: 'Non-China',
-		outbound: t('outboundNames.Non-China'),
-		site_rules: ['geolocation-!cn'],
-		ip_rules: []
-	}
+  { name: 'DIRECT', outbound: 'DIRECT', site_rules: [], ip_rules: [] },
+  { name: '🚀 节点选择', outbound: 'NODE_SELECT', site_rules: [], ip_rules: [] },
+  { name: '☑️ 手动切换', outbound: 'MANUAL', site_rules: [], ip_rules: [] },
+  { name: '♻️ 自动选择', outbound: 'AUTO', site_rules: [], ip_rules: [] },
+  { name: '🎯 全球直连', outbound: 'GLOBAL', site_rules: [], ip_rules: [] },
+  { name: '🐟 漏网之鱼', outbound: 'FALLBACK', site_rules: [], ip_rules: [] },
+  { name: '📢 谷歌FCM', outbound: 'GOOGLE_FCM', site_rules: [], ip_rules: [] }
 ];
 
 export const PREDEFINED_RULE_SETS = {
-	minimal: ['Location:CN', 'Private', 'Non-China'],
-	balanced: ['Location:CN', 'Private', 'Non-China','Github', 'Google', 'Youtube', 'AI Services', 'Telegram'],
-	comprehensive: UNIFIED_RULES.map(rule => rule.name)
-  };
+  minimal: ['🎯 全球直连', 'DIRECT', '🐟 漏网之鱼'],
+  balanced: ['🎯 全球直连', '🚀 节点选择', '♻️ 自动选择', '☑️ 手动切换', '📢 谷歌FCM', '🐟 漏网之鱼'],
+  comprehensive: UNIFIED_RULES.map(rule => rule.name)
+};
   
-
 
 // Generate SITE_RULE_SETS and IP_RULE_SETS from UNIFIED_RULES
 export const SITE_RULE_SETS = UNIFIED_RULES.reduce((acc, rule) => {
